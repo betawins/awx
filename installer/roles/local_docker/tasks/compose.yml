@@ -51,7 +51,8 @@
       when: awx_compose_config.changed or awx_compose_start.changed
       
     - name: Create Preload data
-      minutes: 3
+    - pause:
+        minutes: 3
       command: docker exec awx_task bash -c "/usr/bin/awx-manage create_preload_data"
       when: create_preload_data|bool
       register: cdo
